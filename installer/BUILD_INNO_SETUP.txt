@@ -1,0 +1,13 @@
+OSRS Discord Monitor V24.1 - Inno Setup source
+
+1. Install Inno Setup 7.x (64-bit recommended) from https://jrsoftware.org/isdl.php
+2. Open OSRS_Discord_Monitor_V24_1.iss in Inno Setup.
+3. Build -> Compile.
+4. The installer EXE is created in the Output folder.
+
+This source package contains no Discord bot token or personal Discord IDs.
+The installer asks the user for their own configuration.
+
+The installer includes a Start Menu shortcut named "Create Support Package". It creates a diagnostic ZIP without the bot token.
+
+Note: this source was prepared for Inno Setup 7.x; compilation should be performed on Windows with Inno Setup installed.
