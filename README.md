@@ -58,4 +58,12 @@ If the bot or monitor behaves incorrectly, use:
 
 The support package excludes the Discord bot token.
 
+## Source Code
+
+The source code is publicly available in the `src` folder.
+
+The installer source is available in the `installer` folder.
+
+No Discord bot tokens or other private credentials are included in this repository.
+
 Developed by Bas | Razor
