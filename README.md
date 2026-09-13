@@ -53,12 +53,12 @@ numpy
 
 Create a Discord application and bot in the Discord Developer Portal.
 
-The bot needs these OAuth2 scopes:
+The bot requires these OAuth2 scopes:
 
-- `bot`
-- `applications.commands`
+- bot
+- applications.commands
 
-The bot needs these permissions:
+The bot requires these permissions:
 
 - View Channels
 - Send Messages
@@ -67,19 +67,9 @@ The bot needs these permissions:
 
 Administrator permission is not required.
 
-During a first-time installation, P2P Guardian guides you through entering the bot token and Discord IDs.
-
 ## Installation
 
-Download the latest Windows installer from the GitHub Releases page and run it.
-
-For a first-time installation, the installer asks for:
-
-- Discord bot token
-- Notification channel ID
-- Task notification channel ID
-- Level-up channel ID
-- Your Discord user ID
+For a first-time installation, the installer guides you through the Discord bot requirements and asks for your local bot token and Discord channel/user IDs.
 
 For an existing installation, updates preserve the current local token and Discord settings.
 
@@ -118,3 +108,7 @@ Use the included support and bug-reporting tools when reporting problems. Please
 ## License
 
 See the repository for the applicable project terms.
+
+The support package excludes the Discord bot token.
+
+Developed by Bas | Razor
