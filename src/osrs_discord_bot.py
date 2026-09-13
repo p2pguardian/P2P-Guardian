@@ -148,6 +148,7 @@ _osrs_state = "unknown"
 _last_login_detection = None
 _last_login_detection_at = None
 _monitor_errors = {}
+_startup_screenshot_sent = False
 
 _process_was_running = None
 _login_pixel_was_visible = None
@@ -2069,40 +2070,59 @@ async def monitor_login_screen_pixel_error(error):
 
 
 # ---------------------------------------------------------------------------
-# Periodic screenshot
+# Screenshot check-ins
 # ---------------------------------------------------------------------------
 
-
-@tasks.loop(minutes=PERIODIC_SCREENSHOT_INTERVAL_MINUTES or 30)
-async def periodic_screenshot():
-    if PERIODIC_SCREENSHOT_INTERVAL_MINUTES is None or NOTIFY_CHANNEL_ID is None:
-        return
+async def send_monitor_screenshot(label="Periodic Check-in"):
+    """Send a desktop screenshot to the configured notification channel."""
+    if NOTIFY_CHANNEL_ID is None:
+        print(f"{label}: notification channel is not configured.")
+        return False
 
     channel = client.get_channel(NOTIFY_CHANNEL_ID)
     if channel is None:
-        return
+        try:
+            channel = await client.fetch_channel(NOTIFY_CHANNEL_ID)
+        except Exception as exc:
+            _record_monitor_error("screenshot channel", exc)
+            print(f"{label}: could not load notification channel: {exc}")
+            return False
 
     try:
         screenshot = ImageGrab.grab()
         buffer = io.BytesIO()
         screenshot.save(buffer, format="PNG")
         buffer.seek(0)
+        filename = "startup_screenshot.png" if label == "Startup Check-in" else "periodic_screenshot.png"
         await channel.send(
-            content="🖥️ Periodic Check-in:",
-            file=discord.File(buffer, filename="periodic_screenshot.png"),
+            content=f"🖥️ {label}:",
+            file=discord.File(buffer, filename=filename),
         )
+        print(f"{label} screenshot sent.")
+        return True
     except Exception as exc:
-        await channel.send(f"Could not take periodic screenshot: {exc}")
+        _record_monitor_error("screenshot", exc)
+        print(f"{label}: could not take/send screenshot: {exc}")
+        return False
+
+
+@tasks.loop(minutes=PERIODIC_SCREENSHOT_INTERVAL_MINUTES or 30)
+async def periodic_screenshot():
+    await send_monitor_screenshot("Periodic Check-in")
 
 
 @periodic_screenshot.before_loop
 async def before_periodic_screenshot():
     await client.wait_until_ready()
+    # Wait before the first periodic screenshot so startup only sends the
+    # dedicated Startup Check-in. After that, screenshots are sent every 30 minutes.
+    await asyncio.sleep((PERIODIC_SCREENSHOT_INTERVAL_MINUTES or 30) * 60)
 
 
 @periodic_screenshot.error
 async def periodic_screenshot_error(error):
     _record_monitor_error("periodic screenshot", error)
+    print(f"Periodic screenshot task error: {error}")
     await asyncio.sleep(2)
     if not periodic_screenshot.is_running():
         periodic_screenshot.restart()
@@ -2181,6 +2201,11 @@ async def on_ready():
     _load_persistent_client_states()
     _apply_persistent_state_to_live_clients()
     _bootstrap_login_states()
+
+    global _startup_screenshot_sent
+    if not _startup_screenshot_sent:
+        _startup_screenshot_sent = True
+        await send_monitor_screenshot("Startup Check-in")
 
     if not monitor_process.is_running():
         monitor_process.start()
