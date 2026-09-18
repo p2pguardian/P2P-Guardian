@@ -1,5 +1,9 @@
 # P2P Guardian
 
+<p align="center">
+  <img src="./assets/p2p-guardian-demo-polished.gif" alt="P2P Guardian installation and Discord monitoring demo" width="850">
+</p>
+
 P2P Guardian is a Windows-based OSRS Discord Monitor designed to send monitoring alerts, screenshots, task notifications, and level-up notifications to Discord.
 
 ## Current Release
@@ -87,9 +91,8 @@ For an existing installation, updates preserve the existing local Discord token 
 
 The repository contains the public source code used by P2P Guardian.
 
-- `src/` — OSRS Discord Monitor source files
-- `installer/` — Inno Setup installer source and build information
-- `README.md` — Project documentation
+- [`src`](./src) — OSRS Discord Monitor source files
+- [`installer`](./installer) — Inno Setup installer source and build information
 
 The repository does not contain private Discord credentials.
 
