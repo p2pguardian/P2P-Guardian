@@ -2,9 +2,24 @@
 
 P2P Guardian is a Windows-based OSRS Discord Monitor designed to send monitoring alerts, screenshots, task notifications, and level-up notifications to Discord.
 
-## V24.2.2
+## Current Release
 
-### What's New
+**V24.2.2**
+
+## Features
+
+- Discord monitoring notifications
+- Startup screenshot check-in
+- Periodic screenshot check-ins
+- OSRS task monitoring
+- Task notification channel support
+- Level-up notification channel support
+- P2P Guardian Control for starting and stopping the bot
+- Automatic Windows startup
+- Guided first-time Discord bot setup
+- Support and bug-reporting tools
+
+## What's New in V24.2.2
 
 - Improved installer update detection
 - Existing Discord token and Discord settings are preserved during updates
@@ -17,28 +32,17 @@ P2P Guardian is a Windows-based OSRS Discord Monitor designed to send monitoring
 - Level-up notifications
 - Windows startup support
 
-## Features
-
-- Discord notifications
-- Startup screenshot check-in
-- Periodic screenshot check-ins
-- OSRS task monitoring
-- Task notification channel support
-- Level-up notification channel support
-- P2P Guardian Control for starting and stopping the bot
-- Automatic Windows startup
-- Support and bug-reporting tools
-
 ## Requirements
 
 - Windows
 - OSRS running in an active Windows desktop session
 - Tesseract OCR installed
 - A Discord bot created through the Discord Developer Portal
-- The Discord bot token
-- The required Discord channel IDs and your Discord user ID
+- Your Discord bot token
+- The required Discord channel IDs
+- Your Discord user ID
 
-### Python dependencies
+### Python Dependencies
 
 ```text
 discord.py
@@ -51,12 +55,12 @@ numpy
 
 ## Discord Bot Setup
 
-Create a Discord application and bot in the Discord Developer Portal.
+Create a Discord application and bot through the Discord Developer Portal.
 
 The bot requires these OAuth2 scopes:
 
-- bot
-- applications.commands
+- `bot`
+- `applications.commands`
 
 The bot requires these permissions:
 
@@ -65,23 +69,67 @@ The bot requires these permissions:
 - Embed Links
 - Attach Files
 
-Administrator permission is not required.
+Administrator permission is **not required**.
 
 ## Installation
 
-For a first-time installation, the installer guides you through the Discord bot requirements and asks for your local bot token and Discord channel/user IDs.
+For a first-time installation, the P2P Guardian installer guides you through the required Discord bot configuration.
 
-For an existing installation, updates preserve the current local token and Discord settings.
+You will need to provide your own local:
+
+- Discord bot token
+- Discord channel IDs
+- Discord user ID
+
+For an existing installation, updates preserve the existing local Discord token and Discord settings.
+
+## Source Code
+
+The repository contains the public source code used by P2P Guardian.
+
+- `src/` — OSRS Discord Monitor source files
+- `installer/` — Inno Setup installer source and build information
+- `README.md` — Project documentation
+
+The repository does not contain private Discord credentials.
 
 ## Security
+
+Never publish or commit your private Discord credentials.
 
 The public repository does **not** contain:
 
 - Discord bot tokens
 - Personal Discord user IDs
 - Private Discord channel IDs
+- API keys
+- Passwords
+- Webhooks
 
-Keep your bot token private. Do not commit `discord_token.txt` or `osrs_bot_config.json` to the public repository.
+Do not commit local configuration files such as:
+
+```text
+discord_token.txt
+osrs_bot_config.json
+```
+
+Keep your Discord bot token private.
+
+## Updates
+
+Official P2P Guardian releases are published through the GitHub Releases page.
+
+Updates are designed to preserve the existing local Discord configuration.
+
+Always obtain release files from the official P2P Guardian repository.
+
+## Support
+
+Use the included support and bug-reporting tools when reporting problems.
+
+When reporting an issue, provide relevant logs and details about the problem.
+
+**Never include your Discord bot token or other private credentials in a support request.**
 
 ## Disclaimer
 
@@ -93,30 +141,12 @@ The developer is not responsible for OSRS or Discord bans, account restrictions,
 
 **USE AT YOUR OWN RISK.**
 
-## Source Code
-
-The source code is publicly available in the `src` folder.
-
-The installer source is available in the `installer` folder.
-
-No Discord bot tokens or other private credentials are included in this repository.
-
-## Support
-
-Use the included support and bug-reporting tools when reporting problems. Please provide relevant logs and details about the issue without sharing your Discord bot token or other private credentials.
-
 ## License
 
 See the repository for the applicable project terms.
 
-The support package excludes the Discord bot token.
+Support packages must not contain the Discord bot token or other private credentials.
 
-## Source Code
+---
 
-The source code is publicly available in the `src` folder.
-
-The installer source is available in the `installer` folder.
-
-No Discord bot tokens or other private credentials are included in this repository.
-
-Developed by Bas | Razor
+Developed by **Bas | Razor**
