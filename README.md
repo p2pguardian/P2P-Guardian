@@ -56,6 +56,7 @@ pytesseract
 opencv-python
 numpy
 ```
+> **Note:** When using the P2P Guardian `.exe`, these Python dependencies are installed automatically. You do not need to install them manually.
 
 ## Discord Bot Setup
 
