@@ -10,6 +10,10 @@ P2P Guardian is a Windows-based OSRS Discord Monitor designed to send monitoring
 
 **V24.2.4**
 
+<p align="center">
+  <a href="https://github.com/p2pguardian/P2P-Guardian/releases/tag/v24.2.4"><strong>⬇️ Download P2P Guardian V24.2.4</strong></a>
+</p>
+
 ## Features
 
 - Discord monitoring notifications
