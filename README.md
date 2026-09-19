@@ -8,7 +8,7 @@ P2P Guardian is a Windows-based OSRS Discord Monitor designed to send monitoring
 
 ## Current Release
 
-**V24.2.2**
+**V24.2.4**
 
 ## Features
 
@@ -23,7 +23,7 @@ P2P Guardian is a Windows-based OSRS Discord Monitor designed to send monitoring
 - Guided first-time Discord bot setup
 - Support and bug-reporting tools
 
-## What's New in V24.2.2
+## What's New in V24.2.4
 
 - Improved installer update detection
 - Existing Discord token and Discord settings are preserved during updates
@@ -145,6 +145,8 @@ You are responsible for how you use this software.
 The developer is not responsible for OSRS or Discord bans, account restrictions, data loss, system damage, or other direct or indirect consequences resulting from its use.
 
 **USE AT YOUR OWN RISK.**
+
+<sub><strong>Privacy:</strong> P2P Guardian may collect a limited, unique installation ID, software version, and installation timestamp for installation statistics and abuse prevention. No Windows username, computer name, Discord account information, or other profile data is intentionally collected. Data is kept limited to what is necessary for these purposes.</sub>
 
 ## License
 
