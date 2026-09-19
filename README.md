@@ -38,6 +38,8 @@ P2P Guardian is a Windows-based OSRS Discord Monitor designed to send monitoring
 
 ## Requirements
 
+> **Note:** When using the P2P Guardian `.exe`, these Python dependencies are installed automatically. You do not need to install them manually.
+
 - Windows
 - OSRS running in an active Windows desktop session
 - Tesseract OCR installed
@@ -56,7 +58,6 @@ pytesseract
 opencv-python
 numpy
 ```
-> **Note:** When using the P2P Guardian `.exe`, these Python dependencies are installed automatically. You do not need to install them manually.
 
 ## Discord Bot Setup
 
