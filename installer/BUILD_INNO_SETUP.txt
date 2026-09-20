@@ -1,20 +1,80 @@
 P2P Guardian V24.2.5 - Inno Setup Build
 
-1. Install Inno Setup 7.x (64-bit recommended).
-2. Open P2P_Guardian_V24_2_5_SETUP.iss in Inno Setup.
-3. Build -> Compile.
-4. The installer EXE is created in the configured Output folder.
+IMPORTANT - NATIVE CONTROLLER BUILD IS REQUIRED BEFORE EVERY RELEASE BUILD
 
-The public source package does not contain Discord bot tokens,
-personal Discord IDs, private channel IDs, API keys, passwords,
-or webhooks.
+The installer includes P2P_Guardian_Control.exe. The controller must be rebuilt
+from src/native_controller before compiling the Inno Setup installer.
 
-Users provide their own Discord configuration during setup.
+If the native controller is not rebuilt first, the installer can contain an
+older P2P Guardian Control version even when the rest of the installer is
+updated.
 
-The installer supports both new installations and updates.
-Existing local Discord configuration is preserved during updates.
+RELEASE BUILD ORDER
 
-The installer also includes the P2P Guardian support tools.
+1. Update the application version everywhere required for the release.
+2. Build the native controller FIRST:
+   - Open src/native_controller/BUILD_NATIVE_CONTROLLER.bat
+   - Run it on Windows with the .NET 8 SDK installed.
+   - Confirm the build finishes successfully.
+   - Confirm the generated P2P_Guardian_Control.exe is V24.2.5.
+3. Verify that the native controller publish output used by the installer
+   contains the newly built controller files:
+   - P2P_Guardian_Control.exe
+   - P2P_Guardian_Control.dll
+   - P2P_Guardian_Control.deps.json
+   - P2P_Guardian_Control.runtimeconfig.json
+4. Open P2P_Guardian_V24_2_5_SETUP.iss in Inno Setup 7.x.
+5. Build -> Compile.
+6. Confirm the installer output is:
+   P2P_Guardian_Setup.exe
+7. Install/update on a test machine.
+8. Verify P2P Guardian Control shows the new release version.
+9. Verify the controller can detect a newer official GitHub release.
+10. Verify the update flow starts the official P2P_Guardian_Setup.exe.
+11. Verify an existing installation keeps its local Discord configuration.
+12. Only after these checks, upload P2P_Guardian_Setup.exe to the GitHub Release.
 
-Note: this source was prepared for Inno Setup 7.x.
-Compilation should be performed on Windows with Inno Setup installed.
+MANDATORY CONTROLLER CHECK
+
+Before publishing a release, open P2P Guardian Control from the newly built
+installer and verify that its displayed version matches the release version.
+
+For V24.2.5 it must display:
+
+P2P Guardian
+V24.2.5
+
+If it still displays V24.2.4, DO NOT publish the installer. Rebuild the native
+controller first, then rebuild the installer.
+
+PUBLIC SOURCE / SECURITY
+
+The public source package must not contain Discord bot tokens, personal Discord
+IDs, private channel IDs, API keys, passwords, webhooks, or private installer
+tracking configuration.
+
+Keep private_install_tracking.iss out of GitHub.
+
+BUILD NOTES
+
+- Install Inno Setup 7.x (64-bit recommended).
+- Compilation should be performed on Windows with Inno Setup installed.
+- The public source package does not contain private Discord credentials.
+- Users provide their own Discord configuration during setup.
+- The installer supports both new installations and updates.
+- Existing local Discord configuration is preserved during updates.
+- The installer includes the P2P Guardian support tools.
+
+FINAL RELEASE CHECK
+
+[ ] Version updated
+[ ] Native controller rebuilt
+[ ] Native controller version verified
+[ ] Installer rebuilt
+[ ] Installer tested
+[ ] Existing-install update tested
+[ ] Discord configuration preserved
+[ ] Controller update detection tested
+[ ] P2P_Guardian_Setup.exe verified
+[ ] Public source checked for private credentials
+[ ] GitHub Release created only after all checks pass
