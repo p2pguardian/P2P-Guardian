@@ -23,3 +23,5 @@ installer/Output/
 # Private installer/tracking files
 private_install_tracking.iss
 private_install_tracking.iss.example
+
+payload/native_controller_publish/

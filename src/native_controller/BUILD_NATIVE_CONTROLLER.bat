@@ -12,7 +12,8 @@ if errorlevel 1 (
 )
 
 set "SOURCE=%~dp0"
-set "ROOT=%~dp0..\"
+rem native_controller is inside src, so the repository root is TWO levels up.
+set "ROOT=%~dp0..\..\"
 set "PAYLOAD_PUBLISH=%ROOT%payload\native_controller_publish"
 set "STAGE_ROOT=%TEMP%\P2PG_ControllerBuild"
 set "STAGE_PROJECT=%STAGE_ROOT%\P2P_Guardian_Control.csproj"
@@ -37,8 +38,8 @@ xcopy /e /i /y "%SOURCE%*.ico" "%STAGE_ROOT%\" >nul
 
 if not exist "%STAGE_PROJECT%" goto :fail
 
- echo Building self-contained P2P Guardian Control V24.2.5 from short path...
- echo.
+echo Building self-contained P2P Guardian Control...
+echo.
 
 dotnet restore "%STAGE_PROJECT%" -r win-x64
 if errorlevel 1 goto :fail
@@ -58,8 +59,7 @@ if not defined DLLCOUNT set "DLLCOUNT=0"
 if "%DLLCOUNT%"=="0" goto :missingdlls
 
 mkdir "%PAYLOAD_PUBLISH%"
-rem Use ROBOCOPY for the large self-contained publish folder. XCOPY can report
-rem "Insufficient memory" on large .NET publish trees even when the files are valid.
+rem Use ROBOCOPY for the large self-contained publish folder.
 robocopy "%STAGE_PUBLISH%" "%PAYLOAD_PUBLISH%" /E /COPY:DAT /DCOPY:DAT /R:1 /W:1 /NFL /NDL /NJH /NJS /NP >nul
 if errorlevel 8 goto :copyfail
 
@@ -79,6 +79,7 @@ echo Native controller build complete.
 echo Complete publish output copied to:
 echo %PAYLOAD_PUBLISH%
 echo.
+pause
 exit /b 0
 
 :missingexe
