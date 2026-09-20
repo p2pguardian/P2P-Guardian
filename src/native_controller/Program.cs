@@ -26,7 +26,7 @@ internal sealed class GuardianForm : Form
     private Label statusHint = null!;
     private System.Windows.Forms.Timer timer = null!;
 
-    private const string CurrentVersion = "24.2.4";
+    private const string CurrentVersion = "24.2.5";
     private const string ReleasesApi = "https://api.github.com/repos/p2pguardian/P2P-Guardian/releases/latest";
     private const string SetupAssetName = "P2P_Guardian_Setup.exe";
 
@@ -183,7 +183,7 @@ internal sealed class GuardianForm : Form
         statusValue.Location = new Point(64, 67);
         card.Controls.Add(statusValue);
 
-        var detail = MakeLabel("P2P Guardian  •  OSRS Discord Monitor  •  V24.2.4", 10F, FontStyle.Regular, Muted);
+        var detail = MakeLabel("P2P Guardian  •  OSRS Discord Monitor  •  V24.2.5", 10F, FontStyle.Regular, Muted);
         detail.Location = new Point(64, 105);
         card.Controls.Add(detail);
 

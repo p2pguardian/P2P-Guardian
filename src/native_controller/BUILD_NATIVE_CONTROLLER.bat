@@ -37,7 +37,7 @@ xcopy /e /i /y "%SOURCE%*.ico" "%STAGE_ROOT%\" >nul
 
 if not exist "%STAGE_PROJECT%" goto :fail
 
- echo Building self-contained P2P Guardian Control V24.2.4 from short path...
+ echo Building self-contained P2P Guardian Control V24.2.5 from short path...
  echo.
 
 dotnet restore "%STAGE_PROJECT%" -r win-x64

@@ -1,0 +1,7 @@
+discord.py
+pillow
+psutil
+pytesseract
+opencv-python
+numpy
+windows-capture==2.0.1

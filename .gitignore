@@ -1,4 +1,25 @@
+# Private Discord configuration
 discord_token.txt
+osrs_bot_config.json
+
+# Python generated files
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+
+# Logs and temporary files
 *.log
+*.tmp
+*.bak
+
+# Local secrets / environment files
+.env
+*.secret
+
+# Installer build output
+installer/Output/
+
+# Private installer/tracking files
+private_install_tracking.iss
+private_install_tracking.iss.example
